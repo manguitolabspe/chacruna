@@ -32,7 +32,7 @@ const CommercialProposal: React.FC<CommercialProposalProps> = ({ onBack }) => {
         <div className="container mx-auto px-6 text-center max-w-4xl">
           <span className="text-yellow-600 font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">TRANSFORMACIÓN DIGITAL 2026</span>
           <h1 className="text-5xl md:text-7xl font-serif font-black italic tracking-tighter leading-none mb-8">
-            Una plataforma diseñada para <span className="bg-clip-text text-transparent bg-gradient-to-right from-yellow-500 to-yellow-700">vender experiencias.</span>
+            Una plataforma diseñada para <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-yellow-600">vender experiencias.</span>
           </h1>
           <p className="text-stone-500 text-lg md:text-xl leading-relaxed font-medium italic mb-12">
             "No es solo una página web; es un sistema de reserva optimizado para convertir curiosos en exploradores confirmados."
