@@ -33,7 +33,7 @@ const Footer: React.FC<FooterProps> = ({ onOpenReclamos }) => {
             © {currentYear} Chacruna Eco Tours EIRL • Lobitos, Piura
           </p>
           <p className="text-[9px] uppercase tracking-[0.3em] text-white/10 font-medium">
-            Desarrollado por <span className="text-yellow-500/50 hover:text-yellow-500 transition-colors cursor-pointer">Manguito Labs</span>
+            Desarrollado por <a href="/propuesta-comercial.html" target="_blank" className="text-yellow-500/50 hover:text-yellow-500 transition-colors cursor-pointer border-b border-yellow-500/20">Manguito Labs</a>
           </p>
         </div>
       </div>
