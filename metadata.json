@@ -1,0 +1,7 @@
+{
+  "name": "Chacruna Eco Tours Lobitos",
+  "description": "Una webapp moderna y responsiva para Chacruna Eco Tours, que ofrece recorridos históricos y naturales por Lobitos, Perú. Incluye un asistente de IA para guiar a los visitantes a través de la rica historia local.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
