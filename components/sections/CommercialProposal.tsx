@@ -10,15 +10,15 @@ const CommercialProposal: React.FC<CommercialProposalProps> = ({ onBack }) => {
 
   return (
     <div className="bg-stone-50 text-stone-900 min-h-screen font-sans animate-in fade-in duration-500">
-      {/* Header Local de la Propuesta */}
+      {/* Header Local de la Propuesta - Sin botón de volver */}
       <nav className="py-6 border-b border-stone-200 bg-white sticky top-0 z-50">
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <button onClick={onBack} className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-stone-900 rounded-full flex items-center justify-center text-yellow-500 font-bold group-hover:bg-yellow-500 group-hover:text-stone-900 transition-colors">
-              <i className="fa-solid fa-arrow-left"></i>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-stone-900 rounded-full flex items-center justify-center text-yellow-500 font-bold">
+              <i className="fa-solid fa-file-invoice"></i>
             </div>
-            <span className="font-bold tracking-tighter uppercase text-xs">Volver a la Web</span>
-          </button>
+            <span className="font-bold tracking-tighter uppercase text-xs">Propuesta de Desarrollo</span>
+          </div>
           <div className="hidden md:block">
             <span className="text-[10px] font-black uppercase tracking-widest bg-stone-100 px-6 py-3 rounded-full text-stone-500 italic">
               Propuesta Técnica Exclusiva para Chacruna
@@ -177,14 +177,23 @@ const CommercialProposal: React.FC<CommercialProposalProps> = ({ onBack }) => {
               </div>
             </div>
 
-            <a 
-              href={whatsappManguito}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-12 block w-full bg-white text-stone-900 py-6 rounded-3xl font-black text-xs uppercase tracking-[0.4em] hover:scale-105 transition-transform shadow-2xl text-center"
-            >
-              ACEPTAR PROPUESTA
-            </a>
+            <div className="mt-12 space-y-4">
+              <a 
+                href={whatsappManguito}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-white text-stone-900 py-6 rounded-3xl font-black text-xs uppercase tracking-[0.4em] hover:scale-105 transition-transform shadow-2xl text-center"
+              >
+                ACEPTAR PROPUESTA
+              </a>
+              
+              <button 
+                onClick={onBack}
+                className="block w-full border border-white/20 text-white/60 py-4 rounded-3xl font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-white/5 hover:text-white transition-all"
+              >
+                VER DEMO EN VIVO <i className="fa-solid fa-eye ml-2"></i>
+              </button>
+            </div>
           </div>
         </div>
       </section>
