@@ -3,9 +3,10 @@ import React from 'react';
 
 interface FooterProps {
   onOpenReclamos: () => void;
+  onNavigatePropuesta: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onOpenReclamos }) => {
+const Footer: React.FC<FooterProps> = ({ onOpenReclamos, onNavigatePropuesta }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -33,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({ onOpenReclamos }) => {
             © {currentYear} Chacruna Eco Tours EIRL • Lobitos, Piura
           </p>
           <p className="text-[9px] uppercase tracking-[0.3em] text-white/10 font-medium">
-            Desarrollado por <a href="/propuesta-comercial.html" target="_blank" className="text-yellow-500/50 hover:text-yellow-500 transition-colors cursor-pointer border-b border-yellow-500/20">Manguito Labs</a>
+            Desarrollado por <button onClick={onNavigatePropuesta} className="text-yellow-500/50 hover:text-yellow-500 transition-colors cursor-pointer border-b border-yellow-500/20 uppercase">Manguito Labs</button>
           </p>
         </div>
       </div>

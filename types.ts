@@ -15,7 +15,7 @@ export interface Message {
   text: string;
 }
 
-export type Page = 'inicio' | 'ruta' | 'nosotros' | 'contacto' | 'legal';
+export type Page = 'inicio' | 'ruta' | 'nosotros' | 'contacto' | 'legal' | 'propuesta';
 
 export interface PreFilledBooking {
   tour?: string;

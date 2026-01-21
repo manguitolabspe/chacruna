@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import TourCard from './components/TourCard';
 import ChatBot from './components/ChatBot';
@@ -12,6 +12,7 @@ import QuickInfo from './components/sections/QuickInfo';
 import HistoricTimeline from './components/sections/HistoricTimeline';
 import AboutUs from './components/sections/AboutUs';
 import Contact from './components/sections/Contact';
+import CommercialProposal from './components/sections/CommercialProposal';
 import { TOUR_POINTS } from './constants';
 import { Page, PreFilledBooking } from './types';
 
@@ -22,9 +23,22 @@ const App: React.FC = () => {
   const [preFilledData, setPreFilledData] = useState<PreFilledBooking | null>(null);
   const [toast, setToast] = useState<{ msg: string; type: 'success' | 'info' | 'error' } | null>(null);
 
+  useEffect(() => {
+    // Lógica para detectar página por URL (?p=propuesta)
+    const params = new URLSearchParams(window.location.search);
+    const pageParam = params.get('p') as Page;
+    if (pageParam && ['inicio', 'ruta', 'nosotros', 'contacto', 'propuesta'].includes(pageParam)) {
+      setCurrentPage(pageParam);
+    }
+  }, []);
+
   const handlePageChange = (page: Page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Opcional: actualizar URL sin recargar
+    const url = new URL(window.location.href);
+    url.searchParams.set('p', page);
+    window.history.pushState({}, '', url);
   };
 
   const handleOpenBooking = (data?: PreFilledBooking) => {
@@ -38,6 +52,10 @@ const App: React.FC = () => {
   };
 
   const renderContent = () => {
+    if (currentPage === 'propuesta') {
+      return <CommercialProposal onBack={() => handlePageChange('inicio')} />;
+    }
+
     switch (currentPage) {
       case 'inicio':
         return (
@@ -78,13 +96,23 @@ const App: React.FC = () => {
     }
   };
 
+  const hideLayout = currentPage === 'propuesta';
+
   return (
     <div className="min-h-screen bg-stone-50 selection:bg-yellow-500 selection:text-stone-900">
-      <Navbar currentPage={currentPage} onPageChange={handlePageChange} onOpenBooking={() => handleOpenBooking()} />
+      {!hideLayout && <Navbar currentPage={currentPage} onPageChange={handlePageChange} onOpenBooking={() => handleOpenBooking()} />}
       
       {renderContent()}
       
-      <Footer onOpenReclamos={() => setIsReclamosOpen(true)} />
+      {!hideLayout && (
+        <>
+          <Footer 
+            onOpenReclamos={() => setIsReclamosOpen(true)} 
+            onNavigatePropuesta={() => handlePageChange('propuesta')} 
+          />
+          <ChatBot onStartBooking={handleOpenBooking} />
+        </>
+      )}
 
       <BookingModal 
         isOpen={isBookingOpen} 
@@ -100,8 +128,6 @@ const App: React.FC = () => {
       />
       
       {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
-      
-      <ChatBot onStartBooking={handleOpenBooking} />
     </div>
   );
 };
